@@ -14,8 +14,8 @@
   <tbody>
     <% @divisions.each do |division| %>
       <tr>
-        <td><%= division.conference_name %></td>
-        <td><%= division.zone_name %></td>
+        <td><%= division.conference.conference_name %></td>
+        <td><%= division.zone.zone_name %></td>
         <td><%= link_to 'Show', division %></td>
       </tr>
     <% end %>

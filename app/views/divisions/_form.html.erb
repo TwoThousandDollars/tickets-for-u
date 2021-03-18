@@ -1,0 +1,5 @@
+<%= simple_form_for(@division) do |f| %>
+    <%= f.association :conference, as: :radio_buttons, label_method: :conference_name %>
+    <%= f.association :zone, as: :radio_buttons, label_method: :zone_name %>
+    <%= f.button :submit %>
+<% end %>

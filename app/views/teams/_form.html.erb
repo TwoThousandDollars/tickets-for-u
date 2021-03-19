@@ -1,7 +1,10 @@
 <%= simple_form_for(@team) do |f| %>
+    <%= f.input_field :code, label: 'Team Code: '%>
+    <%= f.input_field :city, label: 'City: ' %>
+    <%= f.input_field :mascot, label: 'Mascot: ' %>
     <%= f.association :division, 
-                      as: :radio_buttons, 
-                      label: false, 
+                      colleciton: @divisions, 
+                      label: "Select Division: ", 
                       label_method: 
                         lambda {
                           |division| "#{division.conference.conference_name} #{division.zone.zone_name}"

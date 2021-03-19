@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_18_221229) do
+ActiveRecord::Schema.define(version: 2021_03_19_032721) do
 
   create_table "conferences", force: :cascade do |t|
     t.string "conference_name"
@@ -33,6 +33,8 @@ ActiveRecord::Schema.define(version: 2021_03_18_221229) do
     t.string "full_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "division_id", null: false
+    t.index ["division_id"], name: "index_teams_on_division_id"
   end
 
   create_table "zones", force: :cascade do |t|
@@ -43,4 +45,5 @@ ActiveRecord::Schema.define(version: 2021_03_18_221229) do
 
   add_foreign_key "divisions", "conferences"
   add_foreign_key "divisions", "zones"
+  add_foreign_key "teams", "divisions"
 end

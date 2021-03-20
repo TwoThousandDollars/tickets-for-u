@@ -8,6 +8,7 @@
       <th>Code</th>
       <th>City</th>
       <th>Full name</th>
+      <th>Division</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,6 +19,10 @@
         <td><%= team.code %></td>
         <td><%= team.city %></td>
         <td><%= team.mascot %></td>
+        <td>
+          <%= team.division.conference.conference_name %> 
+          <%= team.division.zone.zone_name %>
+        </td>
         <td><%= link_to 'Show', team %></td>
       </tr>
     <% end %>

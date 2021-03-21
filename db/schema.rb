@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_20_231149) do
+ActiveRecord::Schema.define(version: 2021_03_21_030221) do
 
   create_table "conferences", force: :cascade do |t|
     t.string "conference_name"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 2021_03_20_231149) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "home_team_id"
     t.integer "away_team_id"
+    t.integer "week"
     t.index ["away_team_id"], name: "index_games_on_away_team_id"
     t.index ["home_team_id"], name: "index_games_on_home_team_id"
   end

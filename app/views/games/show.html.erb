@@ -1,2 +1,17 @@
-<h1>Games#show</h1>
-<p>Find me in app/views/games/show.html.erb</p>
+<p>Home Team: 
+    <%= link_to "#{@game.home_team.city} #{@game.home_team.mascot}", 
+        @game.home_team %> 
+</p>
+
+<p>Away Team: 
+    <%= link_to "#{@game.away_team.city} #{@game.away_team.mascot}", 
+        @game.away_team %> 
+</p>
+
+<p>Week: 
+    <%= @game.week %>
+</p>
+
+<p>Season: 
+    <%= @game.season %>
+</p>

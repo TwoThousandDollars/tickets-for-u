@@ -1,0 +1,8 @@
+<% @games.each do |game| %>
+    <p>
+        Week: 
+        <%= game.week %>
+        <%= game.home_team.mascot %> Vs. 
+        <%= game.away_team.mascot %>
+    </p>
+<% end %>

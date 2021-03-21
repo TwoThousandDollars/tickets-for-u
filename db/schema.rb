@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_19_195032) do
+ActiveRecord::Schema.define(version: 2021_03_20_231149) do
 
   create_table "conferences", force: :cascade do |t|
     t.string "conference_name"
@@ -25,6 +25,16 @@ ActiveRecord::Schema.define(version: 2021_03_19_195032) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["conference_id"], name: "index_divisions_on_conference_id"
     t.index ["zone_id"], name: "index_divisions_on_zone_id"
+  end
+
+  create_table "games", force: :cascade do |t|
+    t.integer "season"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "home_team_id"
+    t.integer "away_team_id"
+    t.index ["away_team_id"], name: "index_games_on_away_team_id"
+    t.index ["home_team_id"], name: "index_games_on_home_team_id"
   end
 
   create_table "teams", force: :cascade do |t|
@@ -45,5 +55,7 @@ ActiveRecord::Schema.define(version: 2021_03_19_195032) do
 
   add_foreign_key "divisions", "conferences"
   add_foreign_key "divisions", "zones"
+  add_foreign_key "games", "teams", column: "away_team_id"
+  add_foreign_key "games", "teams", column: "home_team_id"
   add_foreign_key "teams", "divisions"
 end

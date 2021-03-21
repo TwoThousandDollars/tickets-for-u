@@ -8,6 +8,11 @@ class TeamsController < ApplicationController
 
   # GET /teams/1 or /teams/1.json
   def show
+    @all_games = Game.where(home_team_id: @team.id)
+                      .or(Game.where(away_team_id: @team.id))
+                      .where(season: 2021)
+                      .order(:week)
+    # .sort_by { |game| game.week }
   end
 
   # GET /teams/new

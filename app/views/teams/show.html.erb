@@ -15,5 +15,21 @@
   <%= @team.mascot %>
 </p>
 
+
+<% @all_games.each do |game| %>
+  <p>
+    Week: 
+    <%= game.week %> 
+    <%= game.away_team.mascot %>
+      <% if game.home_team.id == @team.id %>
+        Vs. 
+      <% else %>
+        @ 
+      <% end %>
+    <%= game.home_team.mascot %>
+  </p>
+<% end %>
+
 <%= link_to 'Edit', edit_team_path(@team) %> |
 <%= link_to 'Back', teams_path %>
+

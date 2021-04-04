@@ -1,0 +1,22 @@
+<%= form_for :game, url: root_path, method: :get do |f| %>
+    <div style='display:flex'>
+        
+        <div>
+            <%= f.label :home_team %>
+            <%= f.collection_select :home_team_id, @teams, :id, :mascot %>
+        </div>
+        <div>
+            <%= f.label :away_team %>
+            <%= f.collection_select :away_team_id, @teams, :id, :mascot %>
+        </div>
+        <div>
+            <%= f.label :week %>
+            <%= f.collection_select :week, @weeks, :week, :week %>
+        </div>
+        <div>
+            <%= f.label :season %>
+            <%= f.collection_select :season, @seasons, :season, :season %>
+        </div>
+    </div>
+    <%= f.submit "Submit" %>
+<% end %>

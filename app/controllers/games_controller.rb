@@ -2,7 +2,26 @@ class GamesController < ApplicationController
   before_action :set_game, only: %i[ show edit update destroy ]
 
   def index
-    @games = Game.where(season: 2021)
+    @games = Game.all
+    @teams = Team.all
+    @weeks = Game.select('DISTINCT week')
+    @seasons = Game.select('DISTINCT season')
+    @search = params[:game]
+    if @search
+      home_team_id = @search['home_team_id']
+      away_team_id = @search['away_team_id']
+      week = @search['week']
+      season = @search['season']
+
+      @results = Game.where(home_team_id: home_team_id,
+                            away_team_id: away_team_id,
+                            week: week,
+                            season: season)
+
+      if @results.empty?
+        flash.alert = "Game not found"
+      end
+    end
   end
 
   def show
@@ -16,6 +35,6 @@ class GamesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def game_params
-    params.require(:game).permit(:code, :city, :mascot, :division_id)
+    params.require(:game).permit(:home_team_id, :away_team_id, :week, :season)
   end
 end

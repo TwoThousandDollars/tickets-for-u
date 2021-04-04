@@ -1,0 +1,14 @@
+<%= form_with model: @booking do |f| %>
+
+    <%= f.hidden_field :game_id, value: @booking_game.id %>
+
+    <%= f.fields_for :attendee do |attendee_attributes| %>
+        <%= attendee_attributes.label :name %>
+        <%= attendee_attributes.text_field :name %>
+        <%= attendee_attributes.label :email %>
+        <%= attendee_attributes.text_field :email %>
+    <% end %>
+    <br>
+    <%= f.submit "Book" %>
+
+<% end %>

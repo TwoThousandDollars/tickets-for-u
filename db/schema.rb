@@ -10,7 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_21_030221) do
+ActiveRecord::Schema.define(version: 2021_04_04_003831) do
+
+  create_table "attendees", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "bookings", force: :cascade do |t|
+    t.integer "game_id", null: false
+    t.integer "attendee_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["attendee_id"], name: "index_bookings_on_attendee_id"
+    t.index ["game_id"], name: "index_bookings_on_game_id"
+  end
 
   create_table "conferences", force: :cascade do |t|
     t.string "conference_name"
@@ -54,6 +70,8 @@ ActiveRecord::Schema.define(version: 2021_03_21_030221) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "bookings", "attendees"
+  add_foreign_key "bookings", "games"
   add_foreign_key "divisions", "conferences"
   add_foreign_key "divisions", "zones"
   add_foreign_key "games", "teams", column: "away_team_id"

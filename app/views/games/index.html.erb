@@ -2,8 +2,25 @@
 
 <% if @results %>
     <% @results.each do |game| %>
-        <p>
-            <%= game.home_team.mascot %>
-        </p>
+        <div style='display:flex'>
+            <div style="padding-right: 5px">
+                <%= game.home_team.mascot %>
+            </div>
+            <div style="padding-right: 5px">
+                Vs. 
+            </div>
+            <div style="padding-right: 5px">
+                <%= game.away_team.mascot %> 
+            </div>
+            <div style="padding-right: 5px">
+                    Week 
+                    <%= game.week %> 
+            </div>
+            <div style="padding-right: 5px">
+                <%= game.season %>
+            </div>
+                <%= link_to "Book Ticket", controller: :bookings, action: :new, game: game %>
+            </div>
+        </div>
     <% end %>
 <% end %>
